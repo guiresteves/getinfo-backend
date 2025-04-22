@@ -16,8 +16,13 @@ public class MainController {
     private ContratoService contratoService;
 
     @GetMapping
-    public List<Contrato> listarTodas() {
-        return contratoService.listarTodas();
+    public String index() {
+        return "<html>"+
+        "<ul>"+
+        "<li><a href='http://localhost:8080/empresas'>Empresas</a></li>"+
+        "<li><a href='http://localhost:8080/contratos'>Contratos</a></li>"+
+        "</ul>"+
+        "</html>";
     }
 
     @GetMapping("/{id}")

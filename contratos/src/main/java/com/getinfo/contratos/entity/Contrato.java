@@ -3,22 +3,28 @@ package com.getinfo.contratos.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-// CREATE TABLE IF NOT EXISTS `contratosdb`.`contrato` (
+// CREATE TABLE `contrato` (
 //     `id_contrato` INT NOT NULL,
 //     `id_cliente` INT NOT NULL,
 //     `id_funcionario` INT NOT NULL,
-//     `id_aditivo` INT NOT NULL,
-//     `id_entregavel` INT NOT NULL,
 //     `valor` FLOAT,
-//     `Id_status` INT,
-//     `desc` TEXT,
-//     `tipo_contrato` TEXT(255),
+//     `id_status` INT,
+//     `descricao` TEXT,
+//     `tipo_contrato` TEXT,
 //     `anexo` BLOB,
 //     `prazo` DATETIME,
 //     `data_inicio` DATE,
 //     `data_final` DATE,
 //     `id_responsavel` INT NOT NULL,
-//     PRIMARY KEY (`id_contrato`, `tipo_contrato`)
+//     PRIMARY KEY (`id_contrato`),
+//     FOREIGN KEY (`id_cliente`) REFERENCES `empresa`(`id_empresa`)
+//         ON UPDATE CASCADE ON DELETE RESTRICT,
+//     FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario`(`id_funcionario`)
+//         ON UPDATE CASCADE ON DELETE RESTRICT,
+//     FOREIGN KEY (`id_status`) REFERENCES `status`(`id_status`)
+//         ON UPDATE CASCADE ON DELETE RESTRICT,
+//     FOREIGN KEY (`id_responsavel`) REFERENCES `responsavel`(`id_responsavel`)
+//         ON UPDATE CASCADE ON DELETE RESTRICT
 // );
 
 @Entity
@@ -30,16 +36,14 @@ public class Contrato {
 
     private Long idCliente;
     private Long idFuncionario;
-    private Long idAditivo;
-    private Long idEntregavel;
-    private Float valor;
     private Long idStatus;
-    private String desc;
+    private Long idResponsavel;
+    private Float valor;
+    private String descricao;
     private String tipoContrato;
     @Lob
     private byte[] anexo;
     private String prazo;
     private String dataInicio;
     private String dataFinal;
-    private Long idResponsavel;
 }
