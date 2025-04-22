@@ -90,13 +90,13 @@ CREATE TABLE IF NOT EXISTS `contratosdb`.`contrato` (
     `valor` FLOAT,
     `Id_status` INT,
     `desc` TEXT,
-    `tipo_contrato` TEXT(255),
+    `tipo_contrato` TEXT,
     `anexo` BLOB,
     `prazo` DATETIME,
     `data_inicio` DATE,
     `data_final` DATE,
     `id_responsavel` INT NOT NULL,
-    PRIMARY KEY (`id_contrato`, `tipo_contrato`)
+    PRIMARY KEY (`id_contrato`)
 );
 
 

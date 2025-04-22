@@ -26,5 +26,5 @@ public class Empresa {
     private String cnpj;
     private String razaoSocial;
     private String nomeFantasia;
-    private Short tipo; // 1 - Pessoa Física, 2 - Pessoa Jurídica, 3 - Estrangeiro, 4 - Outros
+    private Short tipo;
 }
