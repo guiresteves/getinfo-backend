@@ -37,7 +37,7 @@ public class EmpresaController {
         if (!empresaService.buscarPorId(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        empresa.setId(id);
+        empresa.setIdEmpresa(id);
         return ResponseEntity.ok(empresaService.salvar(empresa));
     }
 
