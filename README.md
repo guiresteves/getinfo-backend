@@ -7,4 +7,4 @@
 5. Crie o schema "contratosdb"
 6. Execute o script "GRANT ALL PRIVILEGES ON contratosdb.* TO 'contratos_user'@'localhost';"
 7. Execute o arquivo [ContratosApplication.java](getinfo-backend/contratos/src/main/java/com/getinfo/contratos/ContratosApplication.java)
-8. No navegador de sua preferência, acesse <http://localhost:8080/empresas>
+8. No navegador de sua preferência, acesse <http://localhost:8080>
