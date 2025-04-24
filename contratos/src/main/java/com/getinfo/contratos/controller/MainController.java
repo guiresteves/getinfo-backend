@@ -11,7 +11,7 @@ public class MainController {
         "<ul>"+
         "<li><a href='http://localhost:8080/empresas'>Empresas</a></li>"+
         "<li><a href='http://localhost:8080/contratos'>Contratos</a></li>"+
-        "<li><a href='http://localhost:8080/funcionarios'>Contratos</a></li>"+
+        "<li><a href='http://localhost:8080/funcionarios'>Funcionarios</a></li>"+
         "</ul>"+
         "</html>";
     }
