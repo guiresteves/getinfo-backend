@@ -4,11 +4,11 @@ import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/empresas")
 public class EmpresaController {
 
@@ -16,8 +16,9 @@ public class EmpresaController {
     private EmpresaService empresaService;
 
     @GetMapping
-    public List<Empresa> listarTodas() {
-        return empresaService.listarTodas();
+    public String listarTodas(Model model) {
+        model.addAttribute("empresas", empresaService.listarTodas());
+        return "list_empresa";
     }
 
     @GetMapping("/{id}")
@@ -28,6 +29,9 @@ public class EmpresaController {
     }
 
     @PostMapping
+    public String criar() {
+        return "list_empresa";
+    }
     public Empresa criar(@RequestBody Empresa empresa) {
         return empresaService.salvar(empresa);
     }

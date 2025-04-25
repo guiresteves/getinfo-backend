@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+           border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <html>
+        <h1>Empresas</h1>
+        <table>
+            <tr th:each="empresa: ${empresas}">
+                <th>idEmpresa</th>
+                <th>idEndereco</th>
+                <th>idResponsavel</th>
+                <th>cnpj</th>
+                <th>razaoSocial</th>
+                <th>nomeFantasia</th>
+                <th>tipo</th>
+            </tr>
+            <tr th:each="empresa: ${empresas}">
+                <td th:text="${empresa.idEmpresa}"/>
+                <td th:text="${empresa.idEndereco}"/>
+                <td th:text="${empresa.idResponsavel}"/>
+                <td th:text="${empresa.cnpj}"/>
+                <td th:text="${empresa.razaoSocial}"/>
+                <td th:text="${empresa.nomeFantasia}"/>
+                <td th:text="${empresa.tipo}"/>
+            </tr>
+        </table>
+        <hr>
+        <h2>Adicionar Empresa</h2>
+        <form action="/empresas" method="post">
+            <label for="cnpj">CNPJ:</label>
+            <input type="text" id="cnpj" name="cnpj" required><br><br>
+            <input type="submit" value="Adicionar">
+        </form>
+    </html>
+</body>
+</html>
