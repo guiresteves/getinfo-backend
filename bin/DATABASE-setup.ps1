@@ -1,5 +1,5 @@
 $ROOT_USER          = "root"
-$NOVO_USUARIO       = "contrato_user"
+$NOVO_USUARIO       = "contratos_user"
 $BANCO              = "contratosdb"
 $CREATE_SQL         = "SQLs/CREATE-TABLE.sql"
 $INSERT_SQL         = "SQLs/INSERTS-exemplos.sql"

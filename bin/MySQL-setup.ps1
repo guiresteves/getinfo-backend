@@ -30,7 +30,7 @@ if (Test-Path $mysqlPath) {
         Write-Host "Caminho '$mysqlPath' adicionado ao PATH do usuário com sucesso."
     }
     Write-Host "Você pode precisar reiniciar o PowerShell ou fazer logoff/login para aplicar as mudanças."
-    & ".\DATABASE-setup.ps1"
+    & ".\bin\DATABASE-setup.ps1"
     exit
 } else {
     Write-Host "O caminho '$mysqlPath' não existe. Verifique se o MySQL está instalado corretamente."
