@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS `contratosdb`;
 USE `contratosdb`;
 
 CREATE TABLE `endereco_empresa` (
-    `id_endereco` INT NOT NULL,
+    `id_endereco` INT NOT NULL AUTO_INCREMENT,
     `logradouro` VARCHAR(255),
     `cep` VARCHAR(255),
     `numero` BIGINT,
@@ -15,7 +15,7 @@ CREATE TABLE `endereco_empresa` (
 );
 
 CREATE TABLE `responsavel` (
-    `id_responsavel` INT NOT NULL,
+    `id_responsavel` INT NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(255),
     `sobrenome` VARCHAR(255),
     `cpf` VARCHAR(255),
@@ -25,7 +25,7 @@ CREATE TABLE `responsavel` (
 );
 
 CREATE TABLE `tel_responsavel` (
-    `id_tel` INT NOT NULL,
+    `id_tel` INT NOT NULL AUTO_INCREMENT,
     `id_responsavel` INT NOT NULL,
     `numero` VARCHAR(255),
     PRIMARY KEY (`id_tel`),
@@ -34,7 +34,7 @@ CREATE TABLE `tel_responsavel` (
 );
 
 CREATE TABLE `empresa` (
-    `id_empresa` INT NOT NULL,
+    `id_empresa` INT NOT NULL AUTO_INCREMENT,
     `id_endereco` INT,
     `id_responsavel` INT,
     `cnpj` VARCHAR(255),
@@ -49,7 +49,7 @@ CREATE TABLE `empresa` (
 );
 
 CREATE TABLE `email_empresa` (
-    `id_email` INT NOT NULL,
+    `id_email` INT NOT NULL AUTO_INCREMENT,
     `id_empresa` INT NOT NULL,
     `email` VARCHAR(255),
     PRIMARY KEY (`id_email`),
@@ -58,7 +58,7 @@ CREATE TABLE `email_empresa` (
 );
 
 CREATE TABLE `tel_empresa` (
-    `id_tel` INT NOT NULL,
+    `id_tel` INT NOT NULL AUTO_INCREMENT,
     `id_empresa` INT NOT NULL,
     `numero` VARCHAR(255),
     PRIMARY KEY (`id_tel`),
@@ -67,14 +67,14 @@ CREATE TABLE `tel_empresa` (
 );
 
 CREATE TABLE `cargo` (
-    `id_cargo` INT NOT NULL,
+    `id_cargo` INT NOT NULL AUTO_INCREMENT,
     `descricao` VARCHAR(255),
     `ativo` TINYINT(1),
     PRIMARY KEY (`id_cargo`)
 );
 
 CREATE TABLE `funcionario` (
-    `id_funcionario` INT NOT NULL,
+    `id_funcionario` INT NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(255),
     `ativo` TINYINT(1),
     `cpf` VARCHAR(255),
@@ -86,13 +86,13 @@ CREATE TABLE `funcionario` (
 );
 
 CREATE TABLE `status` (
-    `id_status` INT NOT NULL,
+    `id_status` INT NOT NULL AUTO_INCREMENT,
     `descricao` VARCHAR(255),
     PRIMARY KEY (`id_status`)
 );
 
 CREATE TABLE `contrato` (
-    `id_contrato` INT NOT NULL,
+    `id_contrato` INT NOT NULL AUTO_INCREMENT,
     `id_cliente` INT NOT NULL,
     `id_funcionario` INT NOT NULL,
     `id_responsavel` INT NOT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE `contrato` (
 );
 
 CREATE TABLE `entregavel` (
-    `id_entregavel` INT NOT NULL,
+    `id_entregavel` INT NOT NULL AUTO_INCREMENT,
     `id_contrato` INT NOT NULL,
     `id_status` INT,
     `prazo` INT,
@@ -134,7 +134,7 @@ CREATE TABLE `entregavel` (
 );
 
 CREATE TABLE `aditivo` (
-    `id_aditivo` INT NOT NULL,
+    `id_aditivo` INT NOT NULL AUTO_INCREMENT,
     `id_entregavel` INT NOT NULL,
     `tempo_adit` TIME,
     `data_inicio` DATE,
@@ -148,7 +148,7 @@ CREATE TABLE `aditivo` (
 );
 
 CREATE TABLE `repactuacao` (
-    `id_repactuacao` INT NOT NULL,
+    `id_repactuacao` INT NOT NULL AUTO_INCREMENT,
     `id_contrato` INT NOT NULL,
     `tempo_adit` TIME,
     `data_inicio` DATE,
@@ -162,7 +162,7 @@ CREATE TABLE `repactuacao` (
 );
 
 CREATE TABLE `anexo` (
-    `id_anexo` INT NOT NULL,
+    `id_anexo` INT NOT NULL AUTO_INCREMENT,
     `id_contrato` INT NOT NULL,
     `anexo` BLOB,
     PRIMARY KEY (`id_anexo`),

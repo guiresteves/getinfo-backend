@@ -29,11 +29,9 @@ public class EmpresaController {
     }
 
     @PostMapping
-    public String criar() {
-        return "list_empresa";
-    }
-    public Empresa criar(@RequestBody Empresa empresa) {
-        return empresaService.salvar(empresa);
+    public String criar(@ModelAttribute Empresa empresa) {
+        empresaService.salvar(empresa);
+        return "redirect:/empresas";
     }
 
     @PutMapping("/{id}")

@@ -36,8 +36,18 @@
         <hr>
         <h2>Adicionar Empresa</h2>
         <form action="/empresas" method="post">
+            <label for="idEndereco">idEndereco:</label>
+            <input type="text" id="idEndereco" name="idEndereco"><br><br>
+            <label for="idResponsavel">idResponsavel:</label>
+            <input type="text" id="idResponsavel" name="idResponsavel"><br><br>
             <label for="cnpj">CNPJ:</label>
-            <input type="text" id="cnpj" name="cnpj" required><br><br>
+            <input type="text" id="cnpj" name="cnpj"><br><br>
+            <label for="razaoSocial">Razão Social:</label>
+            <input type="text" id="razaoSocial" name="razaoSocial"><br><br>
+            <label for="nomeFantasia">Nome Fantasia:</label>
+            <input type="text" id="nomeFantasia" name="nomeFantasia"><br><br>
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo" name="tipo"><br><br>
             <input type="submit" value="Adicionar">
         </form>
     </html>
