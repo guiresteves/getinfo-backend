@@ -3,7 +3,6 @@ package com.getinfo.contratos.controller;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +21,11 @@ public class EmpresaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Empresa> buscarPorId(@PathVariable Long id) {
-        return empresaService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public String buscarPorId(@PathVariable Long id, Model model) {
+        if (empresaService.buscarPorId(id).isPresent()) {
+            model.addAttribute("empresas", empresaService.buscarPorId(id).get());
+        }
+        return "empresa";
     }
 
     @PostMapping
@@ -34,21 +34,19 @@ public class EmpresaController {
         return "redirect:/empresas";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Empresa> atualizar(@PathVariable Long id, @RequestBody Empresa empresa) {
-        if (!empresaService.buscarPorId(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+    @RequestMapping(value = "/atualizar", method = RequestMethod.POST)
+    public String atualizar(@ModelAttribute Empresa empresa) {
+        if (empresaService.buscarPorId(empresa.getIdEmpresa()).isPresent()) {
+            empresaService.salvar(empresa);
         }
-        empresa.setIdEmpresa(id);
-        return ResponseEntity.ok(empresaService.salvar(empresa));
+        return "redirect:/empresas";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        if (!empresaService.buscarPorId(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+    @RequestMapping(value = "/deletar", method = RequestMethod.POST)
+    public String deletar(@RequestParam Long idEmpresa) {
+        if (empresaService.buscarPorId(idEmpresa).isPresent()) {
+            empresaService.deletar(idEmpresa);
         }
-        empresaService.deletar(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/empresas";
     }
 }

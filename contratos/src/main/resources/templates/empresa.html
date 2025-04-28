@@ -8,6 +8,11 @@
         table, th, td {
            border: 1px solid black;
         }
+        #formularios {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -35,21 +40,47 @@
             </tr>
         </table>
         <hr>
-        <h2>Adicionar Empresa</h2>
-        <form action="/empresas" method="post">
-            <label for="idEndereco">idEndereco:</label>
-            <input type="text" id="idEndereco" name="idEndereco"><br><br>
-            <label for="idResponsavel">idResponsavel:</label>
-            <input type="text" id="idResponsavel" name="idResponsavel"><br><br>
-            <label for="cnpj">CNPJ:</label>
-            <input type="text" id="cnpj" name="cnpj"><br><br>
-            <label for="razaoSocial">Razão Social:</label>
-            <input type="text" id="razaoSocial" name="razaoSocial"><br><br>
-            <label for="nomeFantasia">Nome Fantasia:</label>
-            <input type="text" id="nomeFantasia" name="nomeFantasia"><br><br>
-            <label for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo"><br><br>
-            <input type="submit" value="Adicionar">
+        <div id="formularios">
+            <form action="/empresas" method="post">
+                <h2>Adicionar Empresa</h2>
+                <label for="idEndereco">idEndereco:</label>
+                <input type="text" id="idEndereco" name="idEndereco" required><br><br>
+                <label for="idResponsavel">idResponsavel:</label>
+                <input type="text" id="idResponsavel" name="idResponsavel" required><br><br>
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" id="cnpj" name="cnpj" required><br><br>
+                <label for="razaoSocial">Razão Social:</label>
+                <input type="text" id="razaoSocial" name="razaoSocial" required><br><br>
+                <label for="nomeFantasia">Nome Fantasia:</label>
+                <input type="text" id="nomeFantasia" name="nomeFantasia" required><br><br>
+                <label for="tipo">Tipo:</label>
+                <input type="text" id="tipo" name="tipo" required><br><br>
+                <input type="submit" value="Adicionar">
+            </form>
+            <form action="/empresas/atualizar" method="post">
+                <h2>Atualizar Empresa</h2>
+                <label for="idEmpresa">idEmpresa</label>
+                <input type="text" id="idEmpresa" name="idEmpresa" required><br><br>
+                <label for="idEndereco">idEndereco:</label>
+                <input type="text" id="idEndereco" name="idEndereco" required><br><br>
+                <label for="idResponsavel">idResponsavel:</label>
+                <input type="text" id="idResponsavel" name="idResponsavel" required><br><br>
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" id="cnpj" name="cnpj" required><br><br>
+                <label for="razaoSocial">Razão Social:</label>
+                <input type="text" id="razaoSocial" name="razaoSocial" required><br><br>
+                <label for="nomeFantasia">Nome Fantasia:</label>
+                <input type="text" id="nomeFantasia" name="nomeFantasia" required><br><br>
+                <label for="tipo">Tipo:</label>
+                <input type="text" id="tipo" name="tipo" required><br><br>
+                <input type="submit" value="Atualizar">
+            </form>
+        </div>
+        <form action="empresas/deletar" method="post">
+            <h2>Deletar Empresa</h2>
+            <label for="idEmpresa">idEmpresa:</label>
+            <input type="text" id="idEmpresa" name="idEmpresa" required><br><br>
+            <input type="submit" value="Deletar">
         </form>
     </html>
 </body>
