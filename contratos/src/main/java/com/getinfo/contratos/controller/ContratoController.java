@@ -18,7 +18,7 @@ public class ContratoController {
     @GetMapping
     public String listarTodas(Model model) {
         model.addAttribute("contratos", contratoService.listarTodas());
-        return "list_contrato";
+        return "contrato";
     }
 
     @GetMapping("/{id}")
@@ -30,7 +30,8 @@ public class ContratoController {
 
     @PostMapping
     public String criar(@ModelAttribute Contrato contrato) {
-        contratoService.salvar(contrato);
+        // TODO: Implementar a lógica de criação do contrato
+        // contratoService.salvar(contrato);
         return "redirect:/contratos";
     }
 

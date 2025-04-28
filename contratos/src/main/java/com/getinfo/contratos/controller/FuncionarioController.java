@@ -4,11 +4,11 @@ import com.getinfo.contratos.entity.Funcionario;
 import com.getinfo.contratos.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
+@Controller
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
 
@@ -16,8 +16,9 @@ public class FuncionarioController {
     private FuncionarioService funcionarioService;
 
     @GetMapping
-    public List<Funcionario> listarTodas() {
-        return funcionarioService.listarTodas();
+    public String listarTodas(Model model) {
+        model.addAttribute("funcionarios", funcionarioService.listarTodas());
+        return "funcionario";
     }
 
     @GetMapping("/{id}")
@@ -28,25 +29,24 @@ public class FuncionarioController {
     }
 
     @PostMapping
-    public Funcionario criar(@RequestBody Funcionario funcionario) {
-        return funcionarioService.salvar(funcionario);
+    public String criar(@ModelAttribute Funcionario funcionario) {
+        funcionarioService.salvar(funcionario);
+        return "redirect:/funcionarios";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Funcionario> atualizar(@PathVariable Long id, @RequestBody Funcionario funcionario) {
-        if (!funcionarioService.buscarPorId(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+    @RequestMapping(value = "/atualizar", method = RequestMethod.POST)
+    public String atualizar(@ModelAttribute Funcionario funcionario) {
+        if (funcionarioService.buscarPorId(funcionario.getIdFuncionario()).isPresent()) {
+            funcionarioService.salvar(funcionario);
         }
-        funcionario.setIdFuncionario(id);
-        return ResponseEntity.ok(funcionarioService.salvar(funcionario));
+        return "redirect:/funcionarios";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        if (!funcionarioService.buscarPorId(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+    @RequestMapping(value = "/deletar", method = RequestMethod.POST)
+    public String deletar(@RequestParam Long idFuncionario) {
+        if (funcionarioService.buscarPorId(idFuncionario).isPresent()) {
+            funcionarioService.deletar(idFuncionario);
         }
-        funcionarioService.deletar(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/funcionarios";
     }
 }

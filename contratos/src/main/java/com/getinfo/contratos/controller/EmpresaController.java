@@ -18,7 +18,7 @@ public class EmpresaController {
     @GetMapping
     public String listarTodas(Model model) {
         model.addAttribute("empresas", empresaService.listarTodas());
-        return "list_empresa";
+        return "empresa";
     }
 
     @GetMapping("/{id}")
