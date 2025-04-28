@@ -8,6 +8,11 @@
         table, th, td {
            border: 1px solid black;
         }
+        #formularios {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -45,32 +50,63 @@
             </tr>
         </table>
         <hr>
-        <h2>Adicionar Contrato</h2>
-        <form action="/contratos" method="post">
-            <label for="id_cliente">ID Cliente:</label><br>
-            <input type="text" id="id_cliente" name="id_cliente"><br>
-            <label for="id_funcionario">ID Funcionário:</label><br>
-            <input type="text" id="id_funcionario" name="id_funcionario"><br>
-            <label for="id_status">ID Status:</label><br>
-            <input type="text" id="id_status" name="id_status"><br>
-            <label for="id_responsavel">ID Responsável:</label><br>
-            <input type="text" id="id_responsavel" name="id_responsavel"><br>
-            <label for="valor">Valor:</label><br>
-            <input type="text" id="valor" name="valor"><br>
-            <label for="descricao">Descrição:</label><br>
-            <input type="text" id="descricao" name="descricao"><br>
-            <label for="tipo_contrato">Tipo de Contrato:</label><br>
-            <input type="text" id="tipo_contrato" name="tipo_contrato"><br>
-            <label for="anexo">Anexo:</label><br>
-            <input type="text" id="anexo" name="anexo"><br>
-            <label for="prazo">Prazo:</label><br>
-            <input type="text" id="prazo" name="prazo"><br>
-            <label for="data_inicio">Data de Início:</label><br>
-            <input type="text" id="data_inicio" name="data_inicio"><br>
-            <label for="data_final">Data Final:</label><br>
-            <input type="text" id="data_final" name="data_final"><br><br>
-            <input type="submit" value="Adicionar">
-        </form>
+        <div id="formularios">
+            <form action="/contratos" method="post">
+                <h2>Adicionar Contrato</h2>
+                <label for="id_cliente">ID Cliente:</label><br>
+                <input type="text" id="id_cliente" name="id_cliente"><br>
+                <label for="id_funcionario">ID Funcionário:</label><br>
+                <input type="text" id="id_funcionario" name="id_funcionario"><br>
+                <label for="id_status">ID Status:</label><br>
+                <input type="text" id="id_status" name="id_status"><br>
+                <label for="id_responsavel">ID Responsável:</label><br>
+                <input type="text" id="id_responsavel" name="id_responsavel"><br>
+                <label for="valor">Valor:</label><br>
+                <input type="text" id="valor" name="valor"><br>
+                <label for="descricao">Descrição:</label><br>
+                <input type="text" id="descricao" name="descricao"><br>
+                <label for="tipo_contrato">Tipo de Contrato:</label><br>
+                <input type="text" id="tipo_contrato" name="tipo_contrato"><br>
+                <label for="anexo">Anexo:</label><br>
+                <input type="text" id="anexo" name="anexo"><br>
+                <label for="prazo">Prazo:</label><br>
+                <input type="text" id="prazo" name="prazo"><br>
+                <label for="data_inicio">Data de Início:</label><br>
+                <input type="text" id="data_inicio" name="data_inicio"><br>
+                <label for="data_final">Data Final:</label><br>
+                <input type="text" id="data_final" name="data_final"><br><br>
+                <input type="submit" value="Adicionar">
+            </form>
+            <form action="/contratos/atualizar">
+                <h2>Atualizar Contrato</h2>
+                <label for="id_contrato">ID Contrato:</label><br>
+                <input type="text" id="id_contrato" name="id_contrato"><br>
+                <label for="id_cliente">ID Cliente:</label><br>
+                <input type="text" id="id_cliente" name="id_cliente"><br>
+                <label for="id_funcionario">ID Funcionário:</label><br>
+                <input type="text" id="id_funcionario" name="id_funcionario"><br>
+                <label for="id_status">ID Status:</label><br>
+                <input type="text" id="id_status" name="id_status"><br>
+                <label for="id_responsavel">ID Responsável:</label><br>
+                <input type="text" id="id_responsavel" name="id_responsavel"><br>
+                <label for="valor">Valor:</label><br>
+                <input type="text" id="valor" name="valor"><br>
+                <label for="descricao">Descrição:</label><br>
+                <input type="text" id="descricao" name="descricao"><br>
+                <label for="tipo_contrato">Tipo de Contrato:</label><br>
+                <input type="text" id="tipo_contrato" name="tipo_contrato"><br>
+                <label for="anexo">Anexo:</label><br>
+                <input type="text" id="anexo" name="anexo"><br>
+                <label for="prazo">Prazo:</label><br>
+                <input type="text" id="prazo" name="prazo"><br>
+                <label for="data_inicio">Data de Início:</label><br>
+                <input type="text" id="data_inicio" name="data_inicio"><br>
+                <label for="data_final">Data Final:</label><br>
+                <input type="text" id="data_final" name="data_final"><br><br>
+                <input type="submit" value="Atualizar">
+            </form>
+        </div>
+        <form action="empresas/deletar"></form>
     </html>
 </body>
 </html>

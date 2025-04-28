@@ -22,10 +22,11 @@ public class ContratoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contrato> buscarPorId(@PathVariable Long id) {
-        return contratoService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public String buscarPorId(@PathVariable Long id, Model model) {
+        if (contratoService.buscarPorId(id).isPresent()) {
+            model.addAttribute("contratos", contratoService.buscarPorId(id).get());
+        }
+        return "contrato";
     }
 
     @PostMapping
@@ -35,21 +36,19 @@ public class ContratoController {
         return "redirect:/contratos";
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Contrato> atualizar(@PathVariable Long id, @RequestBody Contrato contrato) {
-        if (!contratoService.buscarPorId(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+    @RequestMapping(value = "/atualizar", method = RequestMethod.POST)
+    public String atualizar(@ModelAttribute Contrato contrato) {
+        if (contratoService.buscarPorId(contrato.getIdContrato()).isPresent()) {
+            contratoService.salvar(contrato);
         }
-        contrato.setIdContrato(id);
-        return ResponseEntity.ok(contratoService.salvar(contrato));
+        return "redirect:/contratos";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        if (!contratoService.buscarPorId(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+    @RequestMapping(value = "/deletar", method = RequestMethod.POST)
+    public String deletar(@RequestParam Long idContrato) {
+        if (contratoService.buscarPorId(idContrato).isPresent()) {
+            contratoService.deletar(idContrato);
         }
-        contratoService.deletar(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/contratos";
     }
 }
