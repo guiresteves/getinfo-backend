@@ -14,7 +14,7 @@ import lombok.Data;
 //     FOREIGN KEY (`id_cargo`) REFERENCES `cargo`(`id_cargo`)
 //         ON UPDATE CASCADE ON DELETE RESTRICT
 // );
-
+//
 @Entity
 @Data
 public class Funcionario {

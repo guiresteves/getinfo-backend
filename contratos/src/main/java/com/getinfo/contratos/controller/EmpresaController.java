@@ -3,11 +3,15 @@ package com.getinfo.contratos.controller;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.Optional;
+
+@RestController
 @RequestMapping("/empresas")
 public class EmpresaController {
 
@@ -15,38 +19,52 @@ public class EmpresaController {
     private EmpresaService empresaService;
 
     @GetMapping
-    public String listarTodas(Model model) {
-        model.addAttribute("empresas", empresaService.listarTodas());
-        return "empresa";
+    public List<Empresa> listarTodas() {
+        System.out.println("Listando...");
+        return empresaService.listarTodas();
     }
 
     @GetMapping("/{id}")
-    public String buscarPorId(@PathVariable Long id, Model model) {
-        if (empresaService.buscarPorId(id).isPresent()) {
-            model.addAttribute("empresas", empresaService.buscarPorId(id).get());
+    public ResponseEntity<Empresa> buscarPorId(@PathVariable Long id) {
+        Optional<Empresa> empresa = empresaService.buscarPorId(id);
+        if (empresa.isPresent()) {
+            return ResponseEntity.ok(empresa.get()); // Retorna a empresa encontrada
+        } else {
+            return ResponseEntity.notFound().build(); // Retorna 404 se a empresa não for encontrada
         }
-        return "empresa";
     }
 
     @PostMapping
-    public String criar(@ModelAttribute Empresa empresa) {
-        empresaService.salvar(empresa);
-        return "redirect:/empresas";
+    public ResponseEntity<Empresa> salvar(@RequestBody Empresa empresa) {
+        Empresa novaEmpresa = empresaService.salvar(empresa);  // Chama o serviço para salvar a empresa
+        return ResponseEntity.status(HttpStatus.CREATED).body(novaEmpresa);  // Retorna a empresa criada com status 201
     }
 
-    @RequestMapping(value = "/atualizar", method = RequestMethod.POST)
-    public String atualizar(@ModelAttribute Empresa empresa) {
-        if (empresaService.buscarPorId(empresa.getIdEmpresa()).isPresent()) {
-            empresaService.salvar(empresa);
-        }
-        return "redirect:/empresas";
+    @PutMapping("/{id}")
+    public ResponseEntity<Empresa> atualizar(@PathVariable Long id, @RequestBody Empresa empresaAtualizada) {
+        return empresaService.atualizar(id, empresaAtualizada)
+                .map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @RequestMapping(value = "/deletar", method = RequestMethod.POST)
-    public String deletar(@RequestParam Long idEmpresa) {
-        if (empresaService.buscarPorId(idEmpresa).isPresent()) {
-            empresaService.deletar(idEmpresa);
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        Optional<Empresa> empresa = empresaService.buscarPorId(id);
+        if (empresa.isPresent()) {
+            empresaService.deletar(id);  // Chama o serviço para deletar a empresa
+            return ResponseEntity.noContent().build();  // Retorna 204 No Content se a empresa for deletada com sucesso
+        } else {
+            return ResponseEntity.notFound().build();  // Retorna 404 Not Found se a empresa não for encontrada
         }
-        return "redirect:/empresas";
     }
+
+
+
+
+
+
+
+
+
 }
