@@ -6,7 +6,7 @@ if (Get-Command mysql -ErrorAction SilentlyContinue) {
 }
 
 # Caminho padrão de instalação do MySQL
-$mysqlPath = "C:\Program Files\MySQL\MySQL Server 8.0\bin"
+$mysqlPath = "C:\Program Files\MySQL\MySQL Server 9.2\bin"
 
 if (Test-Path $mysqlPath) {
     # Verifica se o MySQL está instalado
