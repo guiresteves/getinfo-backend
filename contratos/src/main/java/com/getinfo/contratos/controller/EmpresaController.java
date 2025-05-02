@@ -20,7 +20,6 @@ public class EmpresaController {
 
     @GetMapping
     public List<Empresa> listarTodas() {
-        System.out.println("Listando...");
         return empresaService.listarTodas();
     }
 

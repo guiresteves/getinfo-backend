@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface EmpresaRepository extends JpaRepository<Empresa, Long> {
 
 
+    Long idEmpresa(Long idEmpresa);
 }

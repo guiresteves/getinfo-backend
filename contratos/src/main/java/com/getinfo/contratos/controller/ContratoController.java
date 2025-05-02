@@ -2,13 +2,18 @@ package com.getinfo.contratos.controller;
 
 import com.getinfo.contratos.entity.Contrato;
 import com.getinfo.contratos.service.ContratoService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.time.LocalDate;
+import java.util.List;
+
+@RestController
 @RequestMapping("/contratos")
 public class ContratoController {
 
@@ -16,9 +21,8 @@ public class ContratoController {
     private ContratoService contratoService;
 
     @GetMapping
-    public String listarTodas(Model model) {
-        model.addAttribute("contratos", contratoService.listarTodas());
-        return "contrato";
+    public List<Contrato> listarTodas() {
+        return contratoService.listarTodas();
     }
 
     @GetMapping("/{id}")
@@ -29,13 +33,21 @@ public class ContratoController {
         return "contrato";
     }
 
-    @PostMapping
-    public String criar(@ModelAttribute Contrato contrato) {
-        // TODO: Implementar a lógica de criação do contrato
-        // contratoService.salvar(contrato);
-        return "redirect:/contratos";
+    @GetMapping("/{id}/prazo")
+    public ResponseEntity<Long> getPrazoContrato(@PathVariable Long id) {
+        Long prazo = contratoService.prazoContrato(id);
+        if (prazo == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(prazo);
     }
 
+    @PostMapping()
+    public ResponseEntity<Contrato> salvar(@RequestBody Contrato contrato) {
+        Contrato novoContrato = contratoService.salvar(contrato);
+        return ResponseEntity.status(HttpStatus.CREATED).body(contrato);
+
+    }
     @RequestMapping(value = "/atualizar", method = RequestMethod.POST)
     public String atualizar(@ModelAttribute Contrato contrato) {
         if (contratoService.buscarPorId(contrato.getIdContrato()).isPresent()) {
