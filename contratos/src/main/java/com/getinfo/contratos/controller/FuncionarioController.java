@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping("/funcionarios")
 public class FuncionarioController {
 
@@ -15,9 +17,8 @@ public class FuncionarioController {
     private FuncionarioService funcionarioService;
 
     @GetMapping
-    public String listarTodas(Model model) {
-        model.addAttribute("funcionarios", funcionarioService.listarTodas());
-        return "funcionario";
+    public List<Funcionario> listarTodas() {
+        return funcionarioService.listarTodas();
     }
 
     @GetMapping("/{id}")

@@ -1,5 +1,6 @@
 package com.getinfo.contratos.entity;
 
+import com.getinfo.contratos.enums.FuncionarioStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,8 +24,16 @@ public class Funcionario {
     private Long idFuncionario;
 
     private String nome;
-    private int ativo;
+
+    private String sobrenome;
+
+    private FuncionarioStatus status;
+
     private String cpf;
-    private String contato;
-    private Long idCargo;
+
+
+    private String email;
+    private String telefone;
+    // Aind a ser adicionado
+//    private Long idCargo;
 }

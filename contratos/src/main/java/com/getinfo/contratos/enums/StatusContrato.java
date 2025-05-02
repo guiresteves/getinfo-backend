@@ -1,6 +1,6 @@
 package com.getinfo.contratos.enums;
 
-public enum Status {
+public enum StatusContrato {
     PENDENTE,
     ATIVO,
     CANCELADO

@@ -14,7 +14,7 @@ public class TelefoneEmpresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idTelefone;
 
 
     private String telefone;

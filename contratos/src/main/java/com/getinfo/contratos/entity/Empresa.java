@@ -12,6 +12,10 @@ public class Empresa {
 
     private Long idEndereco;
     private Long idResponsavel;
+//    @ManyToOne
+//    @JoinColumn(name = "id_telefone")
+//    private TelefoneEmpresa telefone;
+
     private String cnpj;
     private String razaoSocial;
     private String nomeFantasia;
