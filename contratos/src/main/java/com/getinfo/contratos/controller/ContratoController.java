@@ -33,27 +33,12 @@ public class ContratoController {
         return "contrato";
     }
 
-    @GetMapping("/{id}/prazo")
-    public ResponseEntity<Long> getPrazoContrato(@PathVariable Long id) {
-        Long prazo = contratoService.prazoContrato(id);
-        if (prazo == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(prazo);
-    }
 
     @PostMapping()
     public ResponseEntity<Contrato> salvar(@RequestBody Contrato contrato) {
         Contrato novoContrato = contratoService.salvar(contrato);
         return ResponseEntity.status(HttpStatus.CREATED).body(contrato);
 
-    }
-    @RequestMapping(value = "/atualizar", method = RequestMethod.POST)
-    public String atualizar(@ModelAttribute Contrato contrato) {
-        if (contratoService.buscarPorId(contrato.getIdContrato()).isPresent()) {
-            contratoService.salvar(contrato);
-        }
-        return "redirect:/contratos";
     }
 
     @RequestMapping(value = "/deletar", method = RequestMethod.POST)

@@ -37,12 +37,4 @@ public class ContratoService {
         contratoRepository.deleteById(id);
     }
 
-    public Long prazoContrato(Long id) {
-        Optional<Contrato> contratoOpt = contratoRepository.findById(id);
-        if (contratoOpt.isPresent()) {
-            return ChronoUnit.DAYS.between(contratoOpt.get().getDataInicio(), contratoOpt.get().getDataFim());
-        }
-        return null;
-
-    }
 }

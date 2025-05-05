@@ -37,7 +37,7 @@ public class FuncionarioController {
 
     @RequestMapping(value = "/atualizar", method = RequestMethod.POST)
     public String atualizar(@ModelAttribute Funcionario funcionario) {
-        if (funcionarioService.buscarPorId(funcionario.getIdFuncionario()).isPresent()) {
+        if (funcionarioService.buscarPorId(funcionario.getId()).isPresent()) {
             funcionarioService.salvar(funcionario);
         }
         return "redirect:/funcionarios";

@@ -26,25 +26,6 @@ public class EmpresaService {
         return empresaRepository.save(empresa);
     }
 
-    public Optional<Empresa> atualizar(Long id, Empresa novaEmpresa) {
-       Optional<Empresa> empresaExistente = empresaRepository.findById(id);
-
-        if (empresaExistente.isPresent()) {
-            Empresa empresa = empresaExistente.get();
-
-            empresa.setCnpj(novaEmpresa.getCnpj());
-            empresa.setRazaoSocial(novaEmpresa.getRazaoSocial());
-            empresa.setNomeFantasia(novaEmpresa.getNomeFantasia());
-            empresa.setTipo(novaEmpresa.getTipo());
-            empresa.setIdEndereco(novaEmpresa.getIdEndereco());
-            empresa.setIdResponsavel(novaEmpresa.getIdResponsavel());
-
-            return Optional.of(empresaRepository.save(empresa));
-        } else {
-            return Optional.empty();
-        }
-    }
-
     public void deletar(Long id) {
         empresaRepository.deleteById(id);
     }

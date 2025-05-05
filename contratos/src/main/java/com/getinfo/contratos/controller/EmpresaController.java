@@ -39,14 +39,6 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(novaEmpresa);  // Retorna a empresa criada com status 201
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Empresa> atualizar(@PathVariable Long id, @RequestBody Empresa empresaAtualizada) {
-        return empresaService.atualizar(id, empresaAtualizada)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
-    }
-
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         Optional<Empresa> empresa = empresaService.buscarPorId(id);

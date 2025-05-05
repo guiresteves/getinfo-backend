@@ -7,7 +7,6 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 
 @Entity
@@ -15,15 +14,15 @@ import java.time.temporal.ChronoUnit;
 public class Contrato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idContrato;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name= "id_empresa", unique = true, nullable = false)
     private Empresa empresa;
 
-    @ManyToOne
-    @JoinColumn(name= "id_funcionario", unique = true, nullable = false)
-    private Funcionario idFuncionario;
+    //@ManyToOne
+    //@JoinColumn(name= "id_funcionario", unique = true, nullable = false)
+    //private Funcionario idFuncionario;
 
     @Enumerated(EnumType.STRING)
     private StatusContrato statusContrato;
@@ -40,5 +39,4 @@ public class Contrato {
     private byte[] anexo;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private Long prazo = ChronoUnit.DAYS.between(dataInicio, dataFim);
 }
