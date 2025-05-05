@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 
 @Entity
@@ -28,7 +29,6 @@ public class Contrato {
     private StatusContrato statusContrato;
     // Ainda será adicionado.
     //private Entregavel entregavel;
-    //private Responsavel responsavel;
 
     private BigDecimal valor;
 
@@ -40,4 +40,5 @@ public class Contrato {
     private byte[] anexo;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+    private Long prazo = ChronoUnit.DAYS.between(dataInicio, dataFim);
 }

@@ -9,15 +9,19 @@ public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmpresa;
-
-    private Long idEndereco;
-    private Long idResponsavel;
-//    @ManyToOne
-//    @JoinColumn(name = "id_telefone")
-//    private TelefoneEmpresa telefone;
-
     private String cnpj;
     private String razaoSocial;
     private String nomeFantasia;
     private Short tipo;
+    private String cep;
+    private String rua;
+    private String numero;
+    private String bairro;
+    private String telefone;
+    private String email;
+    private String cidade;
+    private String complemento;
+    private String nomeResponsavel;
+    private String emailResponsavel;
+    private String telefoneResponsavel;
 }
