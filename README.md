@@ -1,8 +1,10 @@
-#Como testar a API localmente
+Como testar a API localmente:
 
 1. Baixe o projeto pelo github ou clone o repositório na sua máquina.
 2. Instale o MySQL e o MySQLWorkbench
 3. Escolher uma das opções abaixo para o banco de dados:
+
+
 Opção 1:
 É necessário que sua máquina tenha um banco de dados criado com essas especificações:
 localhost:3306/contratosdb
