@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -20,14 +21,16 @@ public class Contrato {
     @JoinColumn(name= "id_empresa", unique = true, nullable = false)
     private Empresa empresa;
 
-    //@ManyToOne
-    //@JoinColumn(name= "id_funcionario", unique = true, nullable = false)
-    //private Funcionario idFuncionario;
+    @ManyToMany
+    @JoinColumn(name = "id_funcionario")
+    private List<Funcionario> funcionarios;
 
     @Enumerated(EnumType.STRING)
     private StatusContrato statusContrato;
-    // Ainda será adicionado.
-    //private Entregavel entregavel;
+
+    @OneToMany
+    @JoinColumn(name = "id_entregavel")
+    private List<Entregavel> entregavel;
 
     private BigDecimal valor;
 
