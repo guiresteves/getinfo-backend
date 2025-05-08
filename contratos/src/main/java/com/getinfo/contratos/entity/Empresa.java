@@ -24,4 +24,5 @@ public class Empresa {
     private String nomeResponsavel;
     private String emailResponsavel;
     private String telefoneResponsavel;
+    private String cpfResponsavel;
 }

@@ -28,9 +28,8 @@ public class EmpresaController {
         Optional<Empresa> empresa = empresaService.buscarPorId(id);
         if (empresa.isPresent()) {
             return ResponseEntity.ok(empresa.get()); // Retorna a empresa encontrada
-        } else {
-            return ResponseEntity.notFound().build(); // Retorna 404 se a empresa não for encontrada
         }
+        return ResponseEntity.notFound().build(); // Retorna 404 se a empresa não for encontrada
     }
 
     @PostMapping
