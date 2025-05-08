@@ -27,9 +27,9 @@ public class EmpresaController {
     public ResponseEntity<Empresa> buscarPorId(@PathVariable Long id) {
         Optional<Empresa> empresa = empresaService.buscarPorId(id);
         if (empresa.isPresent()) {
-            return ResponseEntity.ok(empresa.get()); // Retorna a empresa encontrada
+            return ResponseEntity.ok(empresa.get());
         }
-        return ResponseEntity.notFound().build(); // Retorna 404 se a empresa não for encontrada
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping

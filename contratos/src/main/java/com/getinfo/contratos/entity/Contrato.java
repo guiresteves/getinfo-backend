@@ -32,9 +32,9 @@ public class Contrato {
     @Enumerated(EnumType.STRING)
     private StatusContrato statusContrato;
 
-    @OneToMany
-    @JoinColumn(name = "id_entregavel")
-    private List<Entregavel> entregavel;
+    //@OneToMany
+    //@JoinColumn(name = "id_entregavel")
+    //private List<Entregavel> entregavel;
 
     private BigDecimal valor;
 
