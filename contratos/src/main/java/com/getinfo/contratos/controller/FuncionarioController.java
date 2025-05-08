@@ -40,7 +40,7 @@ public class FuncionarioController {
 
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         Optional<Funcionario> funcionario = funcionarioService.buscarPorId(id);
         if (funcionario.isPresent()) {
