@@ -13,9 +13,9 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
-    @JoinColumn(name = "id_contrato")
-    private List<Contrato> contratos;
+    //@ManyToMany
+    //@JoinColumn(name = "id_contrato")
+    //private List<Contrato> contratos;
 
     private String nome;
     private String sobrenome;

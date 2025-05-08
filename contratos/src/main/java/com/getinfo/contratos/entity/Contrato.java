@@ -21,9 +21,13 @@ public class Contrato {
     @JoinColumn(name= "id_empresa", unique = true, nullable = false)
     private Empresa empresa;
 
-    @ManyToMany
-    @JoinColumn(name = "id_funcionario")
-    private List<Funcionario> funcionarios;
+    //@ManyToMany
+    //@JoinTable(
+            //name = "contrato_funcionario",
+            //joinColumns = @JoinColumn(name = "contrato_id"),
+           // inverseJoinColumns = @JoinColumn(name = "funcionario_id")
+    //)
+    //private List<Funcionario> funcionarios;
 
     @Enumerated(EnumType.STRING)
     private StatusContrato statusContrato;
