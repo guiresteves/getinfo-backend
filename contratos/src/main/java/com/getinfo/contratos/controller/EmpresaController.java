@@ -1,5 +1,6 @@
 package com.getinfo.contratos.controller;
 
+import com.getinfo.contratos.DTOs.EmpresaPublicDTO;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,16 @@ public class EmpresaController {
     public List<Empresa> listarTodas() {
         return empresaService.listarTodas();
     }
+    @GetMapping("/public")
+    public List<EmpresaPublicDTO> listAllPublic() {
+        return empresaService.listAllPublic();
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Empresa> buscarPorId(@PathVariable Long id) {
         Optional<Empresa> empresa = empresaService.buscarPorId(id);
         if (empresa.isPresent()) {
+            System.out.println("achou");
             return ResponseEntity.ok(empresa.get());
         }
         return ResponseEntity.notFound().build();

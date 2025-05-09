@@ -13,8 +13,7 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@ManyToMany
-    //@JoinColumn(name = "id_contrato")
+    //@ManyToMany(mappedBy = "funcionarios")
     //private List<Contrato> contratos;
 
     private String nome;

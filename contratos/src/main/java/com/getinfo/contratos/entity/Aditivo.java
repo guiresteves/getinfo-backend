@@ -13,9 +13,9 @@ public class Aditivo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_contrato", unique = true)
-    private Contrato contrato;
+    //@ManyToOne
+    //@JoinColumn(name = "id_contrato", unique = true)
+    //private Contrato contrato;
 
     private Integer tempoAditivo;
     private LocalDate data_inicio;

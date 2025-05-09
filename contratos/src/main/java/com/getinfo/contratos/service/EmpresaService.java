@@ -1,10 +1,12 @@
 package com.getinfo.contratos.service;
 
+import com.getinfo.contratos.DTOs.EmpresaPublicDTO;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.repository.EmpresaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,6 +18,14 @@ public class EmpresaService {
 
     public List<Empresa> listarTodas() {
         return empresaRepository.findAll();
+    }
+    public List<EmpresaPublicDTO> listAllPublic() {
+        List<EmpresaPublicDTO> empresaPublicDTOS = new ArrayList<>();
+        for(Empresa empresa: listarTodas()) {
+            EmpresaPublicDTO empresaPublicDTO = new EmpresaPublicDTO(empresa);
+            empresaPublicDTOS.add(empresaPublicDTO);
+        }
+        return empresaPublicDTOS;
     }
 
     public Optional<Empresa> buscarPorId(Long id) {

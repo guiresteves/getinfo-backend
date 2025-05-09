@@ -13,9 +13,10 @@ public class Entregavel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_contrato", unique = true)
-    private Contrato contrato;
+    //@ManyToOne
+    //@JoinColumn(name = "id_contrato", nullable = false)
+   // private Contrato contrato;
+
     private StatusEntregavel status;
     private String descricao;
     private String observacao;

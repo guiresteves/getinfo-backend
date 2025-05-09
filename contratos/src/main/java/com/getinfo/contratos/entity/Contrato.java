@@ -1,5 +1,6 @@
 package com.getinfo.contratos.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.getinfo.contratos.enums.StatusContrato;
 import com.getinfo.contratos.enums.TipoContrato;
 import jakarta.persistence.*;
@@ -18,23 +19,25 @@ public class Contrato {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name= "id_empresa", unique = true, nullable = false)
+    @JoinColumn(name= "id_empresa")
     private Empresa empresa;
 
     //@ManyToMany
     //@JoinTable(
-            //name = "contrato_funcionario",
-            //joinColumns = @JoinColumn(name = "contrato_id"),
-           // inverseJoinColumns = @JoinColumn(name = "funcionario_id")
+            //name= "contrato_funcionario",
+            //joinColumns = @JoinColumn(name = "id_contrato"),
+            //inverseJoinColumns = @JoinColumn(name = "id_funcionario")
     //)
-    //private List<Funcionario> funcionarios;
+   // private List<Funcionario> funcionarios;
+
+    //@OneToMany(mappedBy = "contrato", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+   //private List<Entregavel> entregaveis;
+
 
     @Enumerated(EnumType.STRING)
     private StatusContrato statusContrato;
 
-    //@OneToMany
-    //@JoinColumn(name = "id_entregavel")
-    //private List<Entregavel> entregavel;
+
 
     private BigDecimal valor;
 

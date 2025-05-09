@@ -13,9 +13,9 @@ public class Repactuacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @OneToOne
-    @JoinColumn(name = "id_contrato")
-    private Contrato contrato;
+    //@OneToOne
+    //@JoinColumn(name = "id_contrato")
+    //private Contrato contrato;
 
     private Integer tempoAditivo;
     private LocalDate data_inicio;
