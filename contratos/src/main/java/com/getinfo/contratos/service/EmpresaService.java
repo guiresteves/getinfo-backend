@@ -32,6 +32,12 @@ public class EmpresaService {
         return empresaRepository.findById(id);
     }
 
+    public Optional<EmpresaPublicDTO> buscarPorIdPublic(Long id) {
+        Optional<Empresa> empresa = buscarPorId(id);
+        return empresa.map(EmpresaPublicDTO::new);
+
+    }
+
     public Empresa salvar(Empresa empresa) {
         return empresaRepository.save(empresa);
     }

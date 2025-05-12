@@ -27,13 +27,12 @@ public class EmpresaController {
     public List<EmpresaPublicDTO> listAllPublic() {
         return empresaService.listAllPublic();
     }
-
+    
     @GetMapping("/{id}")
-    public ResponseEntity<Empresa> buscarPorId(@PathVariable Long id) {
-        Optional<Empresa> empresa = empresaService.buscarPorId(id);
-        if (empresa.isPresent()) {
-            System.out.println("achou");
-            return ResponseEntity.ok(empresa.get());
+    public ResponseEntity<EmpresaPublicDTO> buscarPorId(@PathVariable Long id) {
+        Optional<EmpresaPublicDTO> empresaPublicDTO = empresaService.buscarPorIdPublic(id);
+        if (empresaPublicDTO.isPresent()) {
+            return ResponseEntity.ok(empresaPublicDTO.get());
         }
         return ResponseEntity.notFound().build();
     }

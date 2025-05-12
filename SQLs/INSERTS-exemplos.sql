@@ -26,9 +26,9 @@ INSERT INTO tel_empresa (id_empresa, numero) VALUES (2, '1144445566');
 INSERT INTO cargo (descricao, ativo) VALUES ('Analista de Contratos', 1);
 INSERT INTO cargo (descricao, ativo) VALUES ('Gerente de Projetos', 1);
 
--- funcionario
-INSERT INTO funcionario (nome, ativo, cpf, contato, id_cargo) VALUES ('Lucas Almeida', 1, '32165498700', 'lucas@empresa.com', 1);
-INSERT INTO funcionario (nome, ativo, cpf, contato, id_cargo) VALUES ('Marina Costa', 1, '74185296300', 'marina@empresa.com', 2);
+-- colaborador
+INSERT INTO colaborador (nome, ativo, cpf, contato, id_cargo) VALUES ('Lucas Almeida', 1, '32165498700', 'lucas@empresa.com', 1);
+INSERT INTO colaborador (nome, ativo, cpf, contato, id_cargo) VALUES ('Marina Costa', 1, '74185296300', 'marina@empresa.com', 2);
 
 -- status
 INSERT INTO status (descricao) VALUES ('Ativo');

@@ -28,13 +28,13 @@
                 <th>contato</th>
                 <th>idCargo</th>
             </tr>
-            <tr th:each="funcionario: ${funcionarios}">
-                <td th:text="${funcionario.idFuncionario}"/>
-                <td th:text="${funcionario.nome}"/>
-                <td th:text="${funcionario.ativo}"/>
-                <td th:text="${funcionario.cpf}"/>
-                <td th:text="${funcionario.contato}"/>
-                <td th:text="${funcionario.idCargo}"/>
+            <tr th:each="colaborador: ${funcionarios}">
+                <td th:text="${colaborador.idFuncionario}"/>
+                <td th:text="${colaborador.nome}"/>
+                <td th:text="${colaborador.ativo}"/>
+                <td th:text="${colaborador.cpf}"/>
+                <td th:text="${colaborador.contato}"/>
+                <td th:text="${colaborador.idCargo}"/>
             </tr>
         </table>
         <hr>

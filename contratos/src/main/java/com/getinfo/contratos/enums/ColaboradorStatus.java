@@ -1,6 +1,6 @@
 package com.getinfo.contratos.enums;
 
-public enum FuncionarioStatus {
+public enum ColaboradorStatus {
     ATIVO,
     DESLIGADO
 }

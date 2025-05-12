@@ -73,7 +73,7 @@ CREATE TABLE `cargo` (
     PRIMARY KEY (`id_cargo`)
 );
 
-CREATE TABLE `funcionario` (
+CREATE TABLE `colaborador` (
     `id_funcionario` INT NOT NULL AUTO_INCREMENT,
     `nome` VARCHAR(255),
     `ativo` TINYINT(1),
@@ -107,7 +107,7 @@ CREATE TABLE `contrato` (
     PRIMARY KEY (`id_contrato`),
     FOREIGN KEY (`id_cliente`) REFERENCES `empresa`(`id_empresa`)
         ON UPDATE CASCADE ON DELETE RESTRICT,
-    FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario`(`id_funcionario`)
+    FOREIGN KEY (`id_funcionario`) REFERENCES `colaborador`(`id_funcionario`)
         ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY (`id_status`) REFERENCES `status`(`id_status`)
         ON UPDATE CASCADE ON DELETE RESTRICT,

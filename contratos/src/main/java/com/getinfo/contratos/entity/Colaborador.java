@@ -1,14 +1,12 @@
 package com.getinfo.contratos.entity;
 
-import com.getinfo.contratos.enums.FuncionarioStatus;
+import com.getinfo.contratos.enums.ColaboradorStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Entity
 @Data
-public class Funcionario {
+public class Colaborador {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,7 +16,7 @@ public class Funcionario {
 
     private String nome;
     private String sobrenome;
-    private FuncionarioStatus status;
+    private ColaboradorStatus status;
     private String cpf;
     private String email;
     private String telefone;
