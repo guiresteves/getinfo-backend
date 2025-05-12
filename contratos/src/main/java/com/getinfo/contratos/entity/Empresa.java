@@ -1,5 +1,6 @@
 package com.getinfo.contratos.entity;
 
+import com.getinfo.contratos.enums.TipoEmpresa;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,9 +19,12 @@ public class Empresa {
     private String cnpj;
     private String razaoSocial;
     private String nomeFantasia;
-    private Short tipo;
+
+    @Enumerated(EnumType.STRING)
+    private TipoEmpresa tipo;
+
     private String cep;
-    private String rua;
+    private String logradouro;
     private String numero;
     private String bairro;
     private String telefone;

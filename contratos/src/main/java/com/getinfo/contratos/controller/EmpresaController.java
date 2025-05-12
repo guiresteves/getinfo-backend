@@ -1,8 +1,11 @@
 package com.getinfo.contratos.controller;
 
+import com.getinfo.contratos.DTOs.EmpresaCreateDTO;
 import com.getinfo.contratos.DTOs.EmpresaPublicDTO;
+import com.getinfo.contratos.config.ModelMapperConfig;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.service.EmpresaService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +22,9 @@ public class EmpresaController {
     @Autowired
     private EmpresaService empresaService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @GetMapping
     public List<Empresa> listarTodas() {
         return empresaService.listarTodas();
@@ -27,7 +33,7 @@ public class EmpresaController {
     public List<EmpresaPublicDTO> listAllPublic() {
         return empresaService.listAllPublic();
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<EmpresaPublicDTO> buscarPorId(@PathVariable Long id) {
         Optional<EmpresaPublicDTO> empresaPublicDTO = empresaService.buscarPorIdPublic(id);
@@ -37,10 +43,18 @@ public class EmpresaController {
         return ResponseEntity.notFound().build();
     }
 
+    //@PostMapping
+//    public ResponseEntity<Empresa> salvar(@RequestBody Empresa empresa) {
+//        Empresa novaEmpresa = empresaService.salvar(empresa);  // Chama o serviço para salvar a empresa
+//        return ResponseEntity.status(HttpStatus.CREATED).body(novaEmpresa);  // Retorna a empresa criada com status 201
+//    }
+
     @PostMapping
-    public ResponseEntity<Empresa> salvar(@RequestBody Empresa empresa) {
-        Empresa novaEmpresa = empresaService.salvar(empresa);  // Chama o serviço para salvar a empresa
-        return ResponseEntity.status(HttpStatus.CREATED).body(novaEmpresa);  // Retorna a empresa criada com status 201
+    public ResponseEntity<EmpresaPublicDTO> salvar(@RequestBody EmpresaCreateDTO empresaDTO) {
+        Empresa empresa = empresaService.toEntity(empresaDTO);
+        empresa = empresaService.salvar(empresa);
+        EmpresaPublicDTO response = modelMapper.map(empresa, EmpresaPublicDTO.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @DeleteMapping("/{id}")

@@ -1,8 +1,10 @@
 package com.getinfo.contratos.service;
 
+import com.getinfo.contratos.DTOs.EmpresaCreateDTO;
 import com.getinfo.contratos.DTOs.EmpresaPublicDTO;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.repository.EmpresaRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,9 @@ public class EmpresaService {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public List<Empresa> listarTodas() {
         return empresaRepository.findAll();
@@ -40,6 +45,14 @@ public class EmpresaService {
 
     public Empresa salvar(Empresa empresa) {
         return empresaRepository.save(empresa);
+    }
+
+    public EmpresaCreateDTO toDTO(Empresa empresa) {
+        return modelMapper.map(empresa, EmpresaCreateDTO.class);
+    }
+
+    public Empresa toEntity(EmpresaCreateDTO empresaDTO) {
+        return modelMapper.map(empresaDTO, Empresa.class);
     }
 
     public void deletar(Long id) {
