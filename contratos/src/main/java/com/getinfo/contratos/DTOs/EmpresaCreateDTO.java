@@ -1,6 +1,5 @@
 package com.getinfo.contratos.DTOs;
 
-import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.enums.TipoEmpresa;
 import lombok.Getter;
 import lombok.Setter;

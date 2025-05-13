@@ -1,8 +1,11 @@
 package com.getinfo.contratos.controller;
 
+import com.getinfo.contratos.DTOs.ContratoCreateDTO;
+import com.getinfo.contratos.DTOs.ContratoExibirDTO;
 import com.getinfo.contratos.entity.Contrato;
 import com.getinfo.contratos.service.ContratoService;
 import org.apache.coyote.Response;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,32 +23,21 @@ public class ContratoController {
     @Autowired
     private ContratoService contratoService;
 
-    @GetMapping
-    public List<Contrato> listarTodas() {
-        return contratoService.listarTodas();
-    }
+    @Autowired
+    private ModelMapper modelMapper;
 
-    @GetMapping("/{id}")
-    public String buscarPorId(@PathVariable Long id, Model model) {
-        if (contratoService.buscarPorId(id).isPresent()) {
-            model.addAttribute("contratos", contratoService.buscarPorId(id).get());
-        }
-        return "contrato";
+    @GetMapping
+    public List<ContratoExibirDTO> listarPublic() {
+        return contratoService.listarPublic();
     }
 
 
     @PostMapping()
-    public ResponseEntity<Contrato> salvar(@RequestBody Contrato contrato) {
-        Contrato novoContrato = contratoService.salvar(contrato);
-        return ResponseEntity.status(HttpStatus.CREATED).body(contrato);
+    public ResponseEntity<ContratoCreateDTO> salvar(@RequestBody ContratoCreateDTO contratoCreateDTO) {
+        Contrato contrato = contratoService.toEntity(contratoCreateDTO);
+        contratoService.salvar(contrato);
+        return ResponseEntity.status(HttpStatus.CREATED).body(contratoCreateDTO);
 
     }
 
-    @RequestMapping(value = "/deletar", method = RequestMethod.POST)
-    public String deletar(@RequestParam Long idContrato) {
-        if (contratoService.buscarPorId(idContrato).isPresent()) {
-            contratoService.deletar(idContrato);
-        }
-        return "redirect:/contratos";
-    }
 }
