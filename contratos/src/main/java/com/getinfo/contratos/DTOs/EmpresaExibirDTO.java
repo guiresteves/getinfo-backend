@@ -7,24 +7,24 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class EmpresaPublicDTO {
+public class EmpresaExibirDTO {
 
     private Long id;
     private String razaoSocial;
     private String cnpj;
     private String nomeFantasia;
 
-    public EmpresaPublicDTO() {
+    public EmpresaExibirDTO() {
     }
 
-    public EmpresaPublicDTO(Long id, String razaoSocial, String cnpj, String nomeFantasia) {
+    public EmpresaExibirDTO(Long id, String razaoSocial, String cnpj, String nomeFantasia) {
         this.id = id;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;
     }
 
-    public EmpresaPublicDTO(Empresa empresa) {
+    public EmpresaExibirDTO(Empresa empresa) {
         id = empresa.getId();
         razaoSocial = empresa.getRazaoSocial();
         cnpj = empresa.getCnpj();

@@ -18,5 +18,6 @@ public class ContratoExibirDTO {
     private TipoContrato tipo;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+    private String nomeFantasiaEmpresa;
 
 }

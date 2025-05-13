@@ -1,15 +1,13 @@
 package com.getinfo.contratos.controller;
 
 import com.getinfo.contratos.DTOs.EmpresaCreateDTO;
-import com.getinfo.contratos.DTOs.EmpresaPublicDTO;
-import com.getinfo.contratos.config.ModelMapperConfig;
+import com.getinfo.contratos.DTOs.EmpresaExibirDTO;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.service.EmpresaService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,14 +23,14 @@ public class EmpresaController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @GetMapping("/public")
-    public List<EmpresaPublicDTO> listAllPublic() {
+    @GetMapping
+    public List<EmpresaExibirDTO> listAllPublic() {
         return empresaService.listAllPublic();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmpresaPublicDTO> buscarPorId(@PathVariable Long id) {
-        Optional<EmpresaPublicDTO> empresaPublicDTO = empresaService.buscarPorIdPublic(id);
+    public ResponseEntity<EmpresaExibirDTO> buscarPorId(@PathVariable Long id) {
+        Optional<EmpresaExibirDTO> empresaPublicDTO = empresaService.buscarPorIdPublic(id);
         if (empresaPublicDTO.isPresent()) {
             return ResponseEntity.ok(empresaPublicDTO.get());
         }
@@ -40,11 +38,18 @@ public class EmpresaController {
     }
 
     @PostMapping
-    public ResponseEntity<EmpresaPublicDTO> salvar(@RequestBody EmpresaCreateDTO empresaDTO) {
+    public ResponseEntity<EmpresaExibirDTO> salvar(@RequestBody EmpresaCreateDTO empresaDTO) {
         Empresa empresa = empresaService.toEntity(empresaDTO);
         empresa = empresaService.salvar(empresa);
-        EmpresaPublicDTO response = modelMapper.map(empresa, EmpresaPublicDTO.class);
+        EmpresaExibirDTO response = modelMapper.map(empresa, EmpresaExibirDTO.class);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<EmpresaExibirDTO> atualizarParcial(@PathVariable Long id ,@RequestBody EmpresaCreateDTO empresaCreateDTO) {
+        Empresa empresaAtualizada = empresaService.atualizarParcial(id, empresaCreateDTO);
+
+        return ResponseEntity.ok(new EmpresaExibirDTO(empresaAtualizada));
     }
 
     @DeleteMapping("/{id}")

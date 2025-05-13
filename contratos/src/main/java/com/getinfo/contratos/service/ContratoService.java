@@ -12,9 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +33,9 @@ public class ContratoService {
     public List<ContratoExibirDTO> listarPublic() {
         List<ContratoExibirDTO> contratosExibir = new ArrayList<>();
         for (Contrato contrato: listarTodas()){
-            contratosExibir.add(modelMapper.map(contrato, ContratoExibirDTO.class));
+            ContratoExibirDTO contratoDTO = modelMapper.map(contrato, ContratoExibirDTO.class);
+            contratoDTO.setNomeFantasiaEmpresa(contrato.getEmpresaId().getNomeFantasia());
+            contratosExibir.add(contratoDTO);
         }
         return contratosExibir;
     }

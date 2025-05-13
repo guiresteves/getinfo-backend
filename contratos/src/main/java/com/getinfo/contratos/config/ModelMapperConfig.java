@@ -1,12 +1,10 @@
 package com.getinfo.contratos.config;
 
-
-import com.getinfo.contratos.DTOs.ContratoCreateDTO;
+import com.getinfo.contratos.DTOs.ContratoExibirDTO;
 import com.getinfo.contratos.entity.Contrato;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.ui.Model;
 
 @Configuration
 public class ModelMapperConfig {
@@ -15,9 +13,9 @@ public class ModelMapperConfig {
     public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
 
-        modelMapper.createTypeMap(ContratoCreateDTO.class, Contrato.class)
-                .addMappings(mapper -> {
-                    mapper.skip(Contrato::setId);});
+        modelMapper.typeMap(Contrato.class, ContratoExibirDTO.class)
+                .addMappings(mapper -> mapper.skip(ContratoExibirDTO::setNomeFantasiaEmpresa));
+
         return modelMapper;
     }
 }
