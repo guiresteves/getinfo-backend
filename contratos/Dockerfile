@@ -30,7 +30,8 @@ RUN mvn clean package -DskipTests
 # Para o estágio de runtime, usamos uma imagem base leve que tenha apenas o JRE (Java Runtime Environment) 23.
 # 'eclipse-temurin:23-jre-jammy' é uma boa opção, oferecendo o JRE 23 sobre uma base Ubuntu Jammy.
 # Imagens 'alpine' são menores, mas 'jammy' (ou similar baseada em Debian/Ubuntu) pode ser mais compatível.
-FROM eclipse-temurin:23-jre-jammy
+FROM eclipse-temurin:23-jre
+
 
 # Define o diretório de trabalho dentro do container para o estágio de runtime.
 WORKDIR /app
