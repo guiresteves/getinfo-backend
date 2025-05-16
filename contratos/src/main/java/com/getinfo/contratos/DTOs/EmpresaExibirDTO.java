@@ -13,22 +13,16 @@ public class EmpresaExibirDTO {
     private String razaoSocial;
     private String cnpj;
     private String nomeFantasia;
-
-    public EmpresaExibirDTO() {
-    }
-
-    public EmpresaExibirDTO(Long id, String razaoSocial, String cnpj, String nomeFantasia) {
-        this.id = id;
-        this.razaoSocial = razaoSocial;
-        this.cnpj = cnpj;
-        this.nomeFantasia = nomeFantasia;
-    }
+    private String emailResponsavel;
+    private String nomeResponsavel;
 
     public EmpresaExibirDTO(Empresa empresa) {
         id = empresa.getId();
         razaoSocial = empresa.getRazaoSocial();
         cnpj = empresa.getCnpj();
         nomeFantasia = empresa.getNomeFantasia();
+        emailResponsavel = empresa.getEmailResponsavel();
+        nomeResponsavel = empresa.getNomeResponsavel(); 
     }
 
 
