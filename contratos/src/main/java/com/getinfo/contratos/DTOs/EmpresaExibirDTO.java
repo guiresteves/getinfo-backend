@@ -22,7 +22,11 @@ public class EmpresaExibirDTO {
         cnpj = empresa.getCnpj();
         nomeFantasia = empresa.getNomeFantasia();
         emailResponsavel = empresa.getEmailResponsavel();
-        nomeResponsavel = empresa.getNomeResponsavel(); 
+        nomeResponsavel = empresa.getNomeResponsavel();
+    }
+
+    public EmpresaExibirDTO() {
+
     }
 
 
