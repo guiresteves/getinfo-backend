@@ -20,4 +20,6 @@ public class ContratoExibirDTO {
     private LocalDate dataFim;
     private String nomeFantasiaEmpresa;
 
+    public ContratoExibirDTO() {
+    }
 }
