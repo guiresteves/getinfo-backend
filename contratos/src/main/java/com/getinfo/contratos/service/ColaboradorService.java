@@ -31,8 +31,6 @@ public class ColaboradorService {
         List<ColaboradorExibirDTO> colaboradoresDTO = new ArrayList<>();
         for (Colaborador colaborador: colaboradores) {
             colaboradoresDTO.add(colaboradorMapper.entityToExibirDTO(colaborador));
-            System.out.println(colaboradorMapper.entityToExibirDTO(colaborador));
-            System.out.println(colaborador.getNome());
         }
         return colaboradoresDTO;
     }

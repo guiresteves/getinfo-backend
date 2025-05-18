@@ -5,11 +5,9 @@ import com.getinfo.contratos.DTOs.EmpresaExibirDTO;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.mappers.EmpresaMapper;
 import com.getinfo.contratos.repository.EmpresaRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,20 +39,11 @@ public class EmpresaService {
         return empresaRepository.findById(id);
     }
 
-//    public Optional<EmpresaExibirDTO> buscarPorIdPublic(Long id) {
-//        Optional<Empresa> empresa = buscarPorId(id);
-//        return empresa.map(EmpresaExibirDTO::new);
-//
-//    }
+    public Optional<EmpresaExibirDTO> buscarPorIdPublic(Long id) {
+        Optional<Empresa> empresa = buscarPorId(id);
+        return empresaMapper.optionalEntityToOptionalExibirDTO(empresa);
 
-//    @Transactional
-//    public Empresa atualizarParcial(Long id, EmpresaCreateDTO empresaDTO) {
-//        Empresa empresaEntidade = empresaRepository.findById(id).orElseThrow(() ->
-//                new ResponseStatusException(HttpStatus.NOT_FOUND));
-//
-//        return empresaRepository.save(empresaEntidade);
-//
-//    }
+    }
 
     public Empresa salvar(Empresa empresa) {
         return empresaRepository.save(empresa);
