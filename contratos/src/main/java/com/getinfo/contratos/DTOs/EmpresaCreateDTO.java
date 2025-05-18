@@ -10,9 +10,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class EmpresaCreateDTO {
-
+    
     @CNPJ(message = "CNPJ inválido")
     private String cnpj;
+    @NotBlank(message = "A razão social é obrigatória")
+    @Size(min = 2, max = 60, message = "A razão social deve entrer 2 e 60 caracteres")
     private String razaoSocial;
     private String nomeFantasia;
     private TipoEmpresa tipo;
