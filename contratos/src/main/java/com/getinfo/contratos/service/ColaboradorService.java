@@ -7,7 +7,6 @@ import com.getinfo.contratos.mappers.ColaboradorMapper;
 import com.getinfo.contratos.repository.ColaboradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +17,6 @@ public class ColaboradorService {
 
     @Autowired
     private ColaboradorRepository colaboradorRepository;
-
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Autowired
     private ColaboradorMapper colaboradorMapper;
@@ -35,6 +31,8 @@ public class ColaboradorService {
         List<ColaboradorExibirDTO> colaboradoresDTO = new ArrayList<>();
         for (Colaborador colaborador: colaboradores) {
             colaboradoresDTO.add(colaboradorMapper.entityToExibirDTO(colaborador));
+            System.out.println(colaboradorMapper.entityToExibirDTO(colaborador));
+            System.out.println(colaborador.getNome());
         }
         return colaboradoresDTO;
     }
@@ -47,6 +45,10 @@ public class ColaboradorService {
 
     public Colaborador CreateDTOtoEntity(ColaboradorCreateDTO colaboradorDTO) {
         return colaboradorMapper.createDTOtoEntity(colaboradorDTO);
+    }
+
+    public ColaboradorExibirDTO entityToExibirDTO(Colaborador colaborador) {
+        return colaboradorMapper.entityToExibirDTO(colaborador);
     }
     public Colaborador salvar(Colaborador colaborador) {
         return colaboradorRepository.save(colaborador);
