@@ -17,34 +17,6 @@ public class ColaboradorController {
     @Autowired
     private ColaboradorService colaboradorService;
 
-    @GetMapping
-    public List<Colaborador> listarTodas() {
-        return colaboradorService.listarTodas();
-    }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Colaborador> buscarPorId(@PathVariable Long id) {
-        Optional<Colaborador> funcionario = colaboradorService.buscarPorId(id);
-        if (funcionario.isPresent()) {
-            return ResponseEntity.ok(funcionario.get());
-        }
-        return ResponseEntity.notFound().build();
-    }
 
-    @PostMapping
-    public ResponseEntity<Colaborador> salvar(@RequestBody Colaborador colaborador) {
-        Colaborador novoColaborador = colaboradorService.salvar(colaborador);
-        return ResponseEntity.status(HttpStatus.CREATED).body(novoColaborador);
-
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        Optional<Colaborador> funcionario = colaboradorService.buscarPorId(id);
-        if (funcionario.isPresent()) {
-            colaboradorService.deletar(id);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
 }
