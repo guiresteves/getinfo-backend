@@ -1,5 +1,6 @@
 package com.getinfo.contratos.entity;
 
+import com.getinfo.contratos.enums.Estado;
 import com.getinfo.contratos.enums.TipoEmpresa;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class Empresa {
     private String bairro;
     private String telefone;
     private String email;
+    private Estado estado;
     private String cidade;
     private String complemento;
     private String nomeResponsavel;
