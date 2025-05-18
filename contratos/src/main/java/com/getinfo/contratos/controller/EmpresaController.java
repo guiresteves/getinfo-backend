@@ -4,6 +4,7 @@ import com.getinfo.contratos.DTOs.EmpresaCreateDTO;
 import com.getinfo.contratos.DTOs.EmpresaExibirDTO;
 import com.getinfo.contratos.entity.Empresa;
 import com.getinfo.contratos.service.EmpresaService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class EmpresaController {
     }
 
     @PostMapping
-    public ResponseEntity<EmpresaExibirDTO> salvar(@RequestBody EmpresaCreateDTO empresaDTO) {
+    public ResponseEntity<EmpresaExibirDTO> salvar(@RequestBody @Valid EmpresaCreateDTO empresaDTO) {
         Empresa empresa = empresaService.toEntity(empresaDTO);
         empresa = empresaService.salvar(empresa);
         EmpresaExibirDTO response = modelMapper.map(empresa, EmpresaExibirDTO.class);
