@@ -3,7 +3,6 @@ package com.getinfo.contratos.entity;
 import com.getinfo.contratos.enums.Estado;
 import com.getinfo.contratos.enums.TipoEmpresa;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
