@@ -6,7 +6,6 @@ import com.getinfo.contratos.entity.Colaborador;
 import com.getinfo.contratos.mappers.ColaboradorMapper;
 import com.getinfo.contratos.repository.ColaboradorRepository;
 import com.getinfo.contratos.service.ColaboradorService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,6 @@ public class ColaboradorController {
     @Autowired
     private ColaboradorRepository colaboradorRepository;
     @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
     private ColaboradorMapper colaboradorMapper;
 
     @GetMapping
@@ -35,9 +32,9 @@ public class ColaboradorController {
 
     @PostMapping
     public ResponseEntity<ColaboradorExibirDTO> salvar(@RequestBody ColaboradorCreateDTO colaboradorCreateDTO) {
-        Colaborador colaborador = colaboradorMapper.createDTOtoEntity(colaboradorCreateDTO);
+        Colaborador colaborador = colaboradorService.CreateDTOtoEntity(colaboradorCreateDTO);
         colaboradorRepository.save(colaborador);
-        ColaboradorExibirDTO response = colaboradorMapper.entityToExibirDTO(colaborador);
+        ColaboradorExibirDTO response = colaboradorService.entityToExibirDTO(colaborador);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

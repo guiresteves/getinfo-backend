@@ -1,7 +1,6 @@
 package com.getinfo.contratos.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.getinfo.contratos.DTOs.ContratoCreateDTO;
 import com.getinfo.contratos.enums.StatusContrato;
 import com.getinfo.contratos.enums.TipoContrato;
 import jakarta.persistence.*;
@@ -43,8 +42,5 @@ public class Contrato {
     private byte[] anexo;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-
-    public Contrato(ContratoCreateDTO contratoCreateDTO) {
-
-    }
+    
 }
