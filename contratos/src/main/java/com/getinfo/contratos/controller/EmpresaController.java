@@ -43,13 +43,6 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<EmpresaExibirDTO> atualizarParcial(@PathVariable Long id ,@RequestBody @Valid EmpresaCreateDTO empresaCreateDTO) {
-//        Empresa empresaAtualizada = empresaService.atualizarParcial(id, empresaCreateDTO);
-//
-//        return ResponseEntity.ok(new EmpresaExibirDTO(empresaAtualizada));
-//    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         Optional<Empresa> empresa = empresaService.buscarPorId(id);
