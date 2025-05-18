@@ -41,11 +41,11 @@ public class EmpresaService {
         return empresaRepository.findById(id);
     }
 
-//    public Optional<EmpresaExibirDTO> buscarPorIdPublic(Long id) {
-//        Optional<Empresa> empresa = buscarPorId(id);
-//        return empresa.map(EmpresaExibirDTO::new);
-//
-//    }
+    public Optional<EmpresaExibirDTO> buscarPorIdPublic(Long id) {
+        Optional<Empresa> empresa = buscarPorId(id);
+        return empresaMapper.optionalEntityToOptionalExibirDTO(empresa);
+
+    }
 
 //    @Transactional
 //    public Empresa atualizarParcial(Long id, EmpresaCreateDTO empresaDTO) {

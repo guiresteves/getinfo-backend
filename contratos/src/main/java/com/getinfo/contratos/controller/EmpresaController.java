@@ -29,14 +29,11 @@ public class EmpresaController {
         return empresaService.listAllPublic();
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<EmpresaExibirDTO> buscarPorId(@PathVariable Long id) {
-//        Optional<EmpresaExibirDTO> empresaPublicDTO = empresaService.buscarPorIdPublic(id);
-//        if (empresaPublicDTO.isPresent()) {
-//            return ResponseEntity.ok(empresaPublicDTO.get());
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<EmpresaExibirDTO> buscarPorId(@PathVariable Long id) {
+        Optional<EmpresaExibirDTO> empresaPublicDTO = empresaService.buscarPorIdPublic(id);
+        return empresaPublicDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     @PostMapping
     public ResponseEntity<EmpresaExibirDTO> salvar(@RequestBody @Valid EmpresaCreateDTO empresaDTO) {
