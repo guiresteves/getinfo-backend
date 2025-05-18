@@ -1,18 +1,16 @@
 package com.getinfo.contratos.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.getinfo.contratos.enums.StatusContrato;
 import com.getinfo.contratos.enums.TipoContrato;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
+
 
 
 @Entity
