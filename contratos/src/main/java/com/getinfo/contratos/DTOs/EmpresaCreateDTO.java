@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class EmpresaCreateDTO {
     
+    @NotBlank(message = "O CNPJ é obrigatório")
     @CNPJ(message = "CNPJ inválido")
     private String cnpj;
     @NotBlank(message = "A razão social é obrigatória")
