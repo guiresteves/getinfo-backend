@@ -47,7 +47,7 @@ public class EmpresaController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<EmpresaExibirDTO> atualizarParcial(@PathVariable Long id ,@RequestBody EmpresaCreateDTO empresaCreateDTO) {
+    public ResponseEntity<EmpresaExibirDTO> atualizarParcial(@PathVariable Long id ,@RequestBody @Valid EmpresaCreateDTO empresaCreateDTO) {
         Empresa empresaAtualizada = empresaService.atualizarParcial(id, empresaCreateDTO);
 
         return ResponseEntity.ok(new EmpresaExibirDTO(empresaAtualizada));
