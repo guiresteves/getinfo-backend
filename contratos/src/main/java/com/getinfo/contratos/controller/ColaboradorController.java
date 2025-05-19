@@ -30,12 +30,28 @@ public class ColaboradorController {
         return colaboradorService.listarDTOs();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ColaboradorExibirDTO> buscarPorId(@PathVariable Long id) {
+        Optional<ColaboradorExibirDTO> colaboradorExibirDTO = colaboradorService.buscarPorIdDTO(id);
+        return colaboradorExibirDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @PostMapping
     public ResponseEntity<ColaboradorExibirDTO> salvar(@RequestBody ColaboradorCreateDTO colaboradorCreateDTO) {
         Colaborador colaborador = colaboradorService.CreateDTOtoEntity(colaboradorCreateDTO);
         colaboradorRepository.save(colaborador);
         ColaboradorExibirDTO response = colaboradorService.entityToExibirDTO(colaborador);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+        Optional<Colaborador> colaborador = colaboradorService.buscarPorId(id);
+        if (colaborador.isPresent()) {
+            colaboradorService.deletar(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
 }

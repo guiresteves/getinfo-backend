@@ -26,6 +26,10 @@ public class ColaboradorService {
         return colaboradorRepository.findAll();
     }
 
+    public Optional<Colaborador> buscarPorId(Long id) {
+        return colaboradorRepository.findById(id);
+    }
+
     public List<ColaboradorExibirDTO> listarDTOs() {
         List<Colaborador> colaboradores = listarTodas();
         List<ColaboradorExibirDTO> colaboradoresDTO = new ArrayList<>();
@@ -35,11 +39,11 @@ public class ColaboradorService {
         return colaboradoresDTO;
     }
 
-
-
-    public Optional<Colaborador> buscarPorId(Long id) {
-        return colaboradorRepository.findById(id);
+    public Optional<ColaboradorExibirDTO> buscarPorIdDTO(Long id) {
+        return colaboradorMapper.optionalEntityToOptionalExibirDTO(buscarPorId(id));
     }
+
+
 
     public Colaborador CreateDTOtoEntity(ColaboradorCreateDTO colaboradorDTO) {
         return colaboradorMapper.createDTOtoEntity(colaboradorDTO);
